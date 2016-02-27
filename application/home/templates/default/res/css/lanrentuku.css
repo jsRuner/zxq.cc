@@ -1,0 +1,20 @@
+
+ul {padding:0;margin:0;list-style-type: none}
+
+
+.mod-left {margin-bottom: 8px;}
+
+.bottom .bd {width: 380px;;margin:10px 0 0 7px;float:left;}
+
+.sildPic .sildPicBar {display: inline;overflow: hidden; width: 86px;float:right;height: 22px;padding-top:8px}
+
+.sildPic .sildPicBar LI {margin-TOP: 5px; display: inline; background: url(../images/xixi.png) no-repeat -165px -112px; margin-left: 3px; width: 6px; cursor: pointer; height: 6px}
+
+.sildPic .sildPicBar LI.select {background: url(../images/xixi.png) no-repeat -165px -86px;}
+
+.sildPic .cnt-wrap {overflow: hidden; width: 380px;height: 140px;}
+
+.sildPic .cnt {width: 1140px}
+
+.sildPic LI {float: left; width: 380px;height:140px;background:#;}
+

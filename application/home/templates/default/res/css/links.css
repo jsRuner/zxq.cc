@@ -1,0 +1,9 @@
+@charset "gb2312";
+/*”—«È¡¥Ω”*/
+.Links{width:1000px;height:123px;line-height:24px;margin-bottom:10px;}
+.Links table{width:100%;border-collapse:collapse;}
+.Links table td{border:1px #eaeaea solid;color:#494949;}
+.Links a{color:#494949;text-decoration:none}
+.Links a:hover{color:#C*0000;text-decoration:underline}
+.RB{color:#C80000;font-weight:bold;margin-right:20px;width:100px;text-align:right;}
+

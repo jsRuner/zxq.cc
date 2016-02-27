@@ -1,0 +1,12 @@
+@charset "gb2312";
+/* È«¾Ö */
+a {color:#333;text-decoration:none;}
+a:hover, a:active, a:focus,.TY_More a:hover,.Focus_Con a:hover,.ZBImgConText a:hover,.More a:hover,.InfoCenter_Tits a:hover,.Focus_Con a,.ZBImgConText a{color:#C80000;text-decoration:underline;}
+img{border:0}
+body{margin:0px; font:12px Arial, "ËÎÌå"; color:#333}
+.wrap{width:1000px;margin:auto;background:#FFF}
+ul,li{padding:0;margin:0;list-style-type:none}
+.FloatL{float:left;display:inline}
+.FloatR{float:right;display:inline}
+.Main_LBox,.Main_RBox{width:260px;margin-top:10px;}
+.Main_MBox{width:460px;margin:10px 10px 10px 10px;}

@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+/*正文页及功能页导航*/
+.nav_3{width:100%;height:60px;background:#ff6000;font:normal 14px/20px "微软雅黑", "宋体";color:#FFF}
+.nav_3_box{width:1000px;margin:auto;}
+.nav_3_box a{color:#FFF;text-decoration:none}
+.nav_3_box a:hover{color:#FFF;text-decoration:underline}
+.nav_3_l{margin-top:8px;}
+.nav_3_link_m{margin-left:16px;}
+.nav_3_link_m2{margin-left:16px;font:normal 14px Arial, Helvetica, sans-serif;line-height:21px}
+
+/*正文页左侧*/
+.positon{height:32px;font:normal 12px/32px "宋体"}
+.page_3_left{width:718px;}
+.page_3_con{border:#e5e5e5 1px solid;border-top:#ff6000 4px solid;padding:30px 40px;margin-bottom:10px;}
+.page_3_title{font:normal 22px/24px "微软雅黑", "宋体";text-align:center;}
+.page_3_title_s{font:normal 12px Arial "宋体";color:#999;margin:10px auto;text-align:center;}
+.page_3_line{height:1px;background:#e5e5e5;margin:18px 0 30px 0;font-size:0px}
+.page_3_left p{font:normal 14px/28px Arial, "宋体";text-indent:28px;}
+.page_3_b{font-weight:bold}
+.page_3_red{color:#c80000}
+.f14{font:normal 14px/28px "宋体"}
+.m20{margin-top:40px;}
+
+/*正文页右侧*/
+.page_3_right{width:270px;}
+
+/*相关新闻*/
+.border1{width:716px;border:1px #e6e6e6 solid; zoom:1}
+.comtitle{ background-color:#eeeeee; text-align:left;font:bold 14px/30px "微软雅黑"; padding-left:10px; height:30px; position:relative}
+.page_3_ul03{width:325px;padding:15px;}
+.page_3_ul03 li{  line-height:24px; text-align:left;font-size:14px;list-style-type:disc;margin-left:20px;}
+.page_3_ul03 li .date{ font-size:12px; color:#888888}
+
+/*竞彩图集*/
+.atlastit{ margin:5px 5px 0 5px; text-align:left}
+.atlastit a.more{ float:right; display:inline; margin-top:10px; display:block; width:30px; height:30px; text-align:center}
+.atlas{ margin:5px 0 10px 0; zoom:1; overflow:hidden; width:998px}
+.atlasLeft{ width:25px; float:left; display:inline; margin-left:9px; cursor:pointer}
+.atlasImg{ width:925px; float:left; display:inline; overflow:hidden}
+.atlasImg #List1,.atlasImg #List2{ float:left}
+.atlasImg li{ width:168px; float:left; text-align:center; display:inline; margin-left:15px}
+.atlasImg li img{ border:1px solid #ccc; padding:2px; width:162px; height:106px}
+.atlasImg li img:hover{ padding:0; width:166px; height:110px}
+.atlasImg li a:hover{ text-decoration:none}
+.atlasImg li p{ margin-top:8px}
+.atlasRight{ width:25px; float:right; display:inline; margin-right:9px; cursor:pointer}
+.page_3_kj{margin-bottom:10px;}
+.page_3_kj2{margin:10px 0;}
+.page_3_ul04{width:325px;padding:15px;}
+.page_3_ul04 li{  line-height:24px; text-align:left;font-size:14px;list-style-type:disc;margin-left:20px;}
+
+/*热点新闻*/
+.border_rd{border:1px #e6e6e6 solid; zoom:1}
+.border_rd li{  line-height:28px; text-align:left;font-size:12px;list-style-type:disc;margin-left:20px;}
+.border_rd_ul{margin:10px 0}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+@charset "gb2312";
+/*Footer*/
+.Footer{width:100%;height:80px;text-align:center;}
+.WarningBox{width:100%;height:30px;background:#c80000;color:#FFF;margin-bottom:10px;line-height:30px;}
+.FooterZC{color:#4d4d4d;line-height:24px;}
+.FooterZC a{color:#4d4d4d}
+.FooterZC a:hover{color:#C80000}
+

@@ -1,0 +1,8 @@
+document.writeln('<div class="Footer FloatR">\
+	<div class="WarningBox">购彩有节制，请理性投注！未满18周岁的未成年人不得购买彩票及兑奖！</div>\
+    <div class="FooterZC">\
+    	<a href="http://www.sporttery.com/jcdt/2012/0329/1426.html" target="_blank" title="法律声明">法律声明</a> | <a href="http://www.sporttery.cn/map.html" target="_blank" title="网站导航">网站导航</a> | <a href="http://www.sporttery.cn/football/o/2012/0329/1431.html" target="_blank" title="联系我们">联系我们</a> | <a href="http://chat.looyu.com/chat/chat/p.do?c=50013&f=107611&g=68518" target="_blank" title="在线客服">在线客服</a> | <a href="http://www.sporttery.com/jcdt/2012/0329/1429.html" target="_blank" title="免责声明">免责声明</a><br />\
+<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202014042900008" target="_blank"><img src="http://static.sporttery.cn/images/2014/05/04/1_1134542471.gif" border="0" /></a><br />\
+本网站赛程、赛果、奖金等数据由国家体育总局体育彩票管理中心发布 竞彩网ICP编号：<a href="http://www.miibeian.gov.cn/" target="_blank" >京ICP证090602号</a> 网络视听许可证：<a href="http://www.sporttery.cn/video_license.html" target="_blank" >0110594号</a> 广播电视节目制作经营许可证(京)字<a href="http://static.sporttery.cn/images/2015/05/18/1_1112529141.jpg" target="_blank" >第1864号</a>\
+    </div>\
+</div>');
