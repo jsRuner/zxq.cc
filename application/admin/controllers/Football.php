@@ -65,6 +65,15 @@ class Football extends Admin_Controller
 
     public function delete(){
         $id = $this->input->post('id');
+
+        //检查是否存在赔率。
+        $peilvlist = $this->football_peilv->select_list_by_fid($id);
+        if (is_array($peilvlist) && count($peilvlist) >0){
+            echo "删除失败:该比赛下还存在赔率记录。请先去删除赔率信息";
+            exit(0);
+        }
+
+
         $result = $this->football->delete($id);
         if($result){
             echo "删除成功";

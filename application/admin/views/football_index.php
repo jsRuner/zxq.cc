@@ -156,7 +156,9 @@
                 success: function(data){
                     alert(data);
                     //删除当前a标签的祖先元素 的tr.
-                    $(obj).parents("tr").remove();
+                    if (data =="删除成功"){
+                        $(obj).parents("tr").remove();
+                    }
                 },
                 dataType: "html"
             });
