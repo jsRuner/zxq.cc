@@ -43,7 +43,7 @@ class Football extends Admin_Controller
 
     }
 
-
+    //2016年2月27日 todo 需要增加显示最后一次的赔率。
     public function index(){
 
         $result = $this->football->find_all();

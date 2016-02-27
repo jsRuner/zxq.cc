@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => '123456',
 	'database' => 'zxq.cc',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'dbprefix' => 'zxq_',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
