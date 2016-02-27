@@ -64,6 +64,9 @@ class MY_Model extends CI_Model
 
         #数据预处理。例如过滤 todo
         $facade_data = $data;
+        #添加数据时间
+        $data['add_time'] = time();
+        $data['update_time'] = time();
 
         $result = $this->db->insert($this->table, $facade_data);
 
@@ -103,6 +106,8 @@ class MY_Model extends CI_Model
             return false;
         }
         $this->db->where(array($this->primary => $options));
+
+        $data['update_time'] = time();
         $result = $this->db->update($this->table, $data);
         return $result;
     }
