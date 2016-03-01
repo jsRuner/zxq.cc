@@ -44,16 +44,35 @@ class Football extends Admin_Controller
     }
 
     //2016年2月27日 todo 需要增加显示最后一次的赔率。
+
     public function index(){
 
-        $result = $this->football->find_all();
+
+
+        //查询条件。todo:
+        $limit =  15;
+        $offset = intval($this->input->get('per_page'));
+        $result = $this->football->select_list($limit,$offset);
+        $this->load->library('pagination');
+        $config['base_url'] = "http://zxq.cc/admin.php/football/index";
+        $config['total_rows'] = $this->football->count();
+        $this->pagination->initialize($config);
+        $data['paginationstr'] = $this->pagination->create_links();
+
 
         $data['footballlist'] = $result;
+
+
 
 
         $data['tpl'] = "football_index";
         $data['nav2'] ="列表管理";
         $this->load->view('common_admin',$data);
+
+
+
+
+
     }
 
     public function add(){
@@ -154,7 +173,7 @@ class Football extends Admin_Controller
         }
     }
 
-    //赔率列表。
+    //赔率列表。无需分页。赔率没有那么多记录。
     public function peilv(){
         $data = array();
 
@@ -166,6 +185,12 @@ class Football extends Admin_Controller
 
         //赔率列表
         $peilvlist = $this->football_peilv->select_list_by_fid($fid);
+
+
+
+
+
+
         $data['peilvlist'] = $peilvlist;
 
         $data['tpl'] = "football_peilv";
@@ -287,6 +312,8 @@ class Football extends Admin_Controller
         }
 
     }
+
+
 
 
 }

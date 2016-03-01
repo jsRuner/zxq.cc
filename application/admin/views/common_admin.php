@@ -24,6 +24,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script type="text/javascript" src="/application/admin/views/js/menu.js"></script>
 
     <script type="text/javascript" src="/application/admin/views/js/DatePicker.js"></script>
+
+    <style>
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px 0;
+            border-radius: 4px;
+            margin-left: 35px;
+        }
+        .pagination{
+            float:right;
+            margin-right: 35px;
+        }
+        .pagination>li {
+            display: inline
+        }
+        .pagination>li>a, .pagination>li>span,.pagination>li>strong {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        .pagination>li>strong{
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,6 +87,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="list-item none" <?php if($this->router->class == 'football') echo 'style="display:block;"'?> >
                     <a href="<?php echo site_url('football/index');?>">列表管理</a>
                     <a href="<?php echo site_url('football/add');?>">新增记录</a>
+                </div>
+            </li>
+
+            <li <?php if($this->router->class == 'collect') echo 'class="selected"'?> >
+                <h4 class="M2"><span></span>采集管理</h4>
+                <div class="list-item none" <?php if($this->router->class == 'collect') echo 'style="display:block;"'?> >
+                    <a href="<?php echo site_url('collect/index');?>">采集管理</a>
+                    <a href="<?php echo site_url('collect/add');?>">新增记录</a>
                 </div>
             </li>
 

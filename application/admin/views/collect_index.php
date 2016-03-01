@@ -75,6 +75,13 @@
            border-collapse: collapse;
        }
 
+        .caiji_ing{
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
 
     </style>
 
@@ -84,18 +91,14 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>赛事编号</th>
-<!--                        <th>联赛</th>-->
-                        <th>日期</th>
-                        <th>主队&nbsp;VS&nbsp; 客队</th>
-                        <th>赛季排名</th>
-<!--                        <th>让球</th>-->
-<!--                        <th>胜</th>-->
-<!--                        <th>平</th>-->
-<!--                        <th>负</th>-->
-                        <th>比分</th>
-                        <th>比赛结果</th>
-                        <th>数据来源</th>
+
+                        <th>采集编号</th>
+                        <th>采集名称</th>
+                        <th>采集方法</th>
+                        <th>采集说明</th>
+                        <th>添加时间</th>
+                        <th>更新时间</th>
+                        <th>采集类型</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -103,33 +106,24 @@
 
                     <?php
 
-                    foreach($footballlist as $item){
+                    foreach($collectlist as $item){
                     ?>
 
 
                     <tr>
                         <th scope="row"><?php echo $item['id'];?></th>
-                        <td><?php echo  $item['football_code'];?></td>
-                        <td><?php echo date("Y-m-d",$item['football_date']);?></td>
-                        <th><?php echo $item['football_team1'];?>&nbsp;VS&nbsp;<?php echo $item['football_team2'];?> </th>
-                        <th><?php echo $item['team1_rank'];?>&nbsp;VS&nbsp;<?php echo $item['team2_rank'];?></th>
-
-
-<!--                        <th>--><?php //echo $item['id'];?><!--</th>-->
-<!--                        -->
-<!--                        <th>--><?php //echo $item['id'];?><!--</th>-->
-<!--                        <th>--><?php //echo $item['id'];?><!--</th>-->
-<!--                        <th>--><?php //echo $item['id'];?><!--</th>-->
-
-
-                        <th><?php echo $item['football_score'];?></th>
-                        <th><?php echo $item['football_result'];?></th>
-                        <th><?php echo $item['data_from'] == 1?"采集":"人工";?></th>
+                        <td><?php echo  $item['collect_code'];?></td>
+                        <td><?php echo  $item['collect_title'];?></td>
+                        <td><?php echo  $item['collect_method'];?></td>
+                        <td><?php echo msubstr($item['collect_content'],0,10);?></td>
+                        <th><?php echo date('Y-m-d',$item['add_time']);?> </th>
+                        <th><?php echo date('Y-m-d',$item['update_time']);?> </th>
+                        <th><?php echo $item['data_type'] == 1?"内置":"人工";?></th>
                         <th>
-                            <a href="<?php echo site_url('football/editor');?>?id=<?php echo $item['id'];?>">编辑</a>
-<!--                            <a href="#">查看</a>-->
+                            <a href="<?php echo site_url('collect/editor');?>?id=<?php echo $item['id'];?>">编辑</a>
                             <a href="#" onClick="delcfm(this,<?php echo $item['id'];?>)">删除</a>
-                            <a href="<?php echo site_url('football/peilv');?>?id=<?php echo $item['id'];?>">赔率</a>
+                            <a href="#" onClick="caijicfm(this,'<?php echo $item['collect_method'];?>',<?php echo $item['id'];?>)">采集</a>
+                            <a href="<?php echo site_url('football/peilv');?>?id=<?php echo $item['id'];?>">数据</a>
                         </th>
                     </tr>
 
@@ -143,6 +137,10 @@
 
 
 
+    <div class="caiji_ing" style="display: none;">
+        正在采集。。。请勿进行其他操作。
+    </div>
+
 
 <script>
 
@@ -151,9 +149,12 @@
         if (!confirm("确认要删除？")) {
             window.event.returnValue = false;
         }else{
+
+
+
             $.ajax({
                 type: 'POST',
-                url: "<?php echo site_url('football/delete')?>",
+                url: "<?php echo site_url('collect/delete')?>",
                 data:{id:fid},
                 success: function(data){
                     alert(data);
@@ -161,6 +162,28 @@
                     if (data =="删除成功"){
                         $(obj).parents("tr").remove();
                     }
+                },
+                dataType: "html"
+            });
+
+        }
+    }
+
+    //采集确认。按钮要变成不可以点击，需要出现采集的进度条，等采集ok才恢复
+    function caijicfm(obj,methodname,cid) {
+        if (!confirm("确认要采集？")) {
+            window.event.returnValue = false;
+        }else{
+
+            $(".caiji_ing").show();
+//            window.location.href =  "<?php //echo site_url('collect');?>//"+"/"+methodname;
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('collect')?>"+"/"+methodname,
+                data:{id:cid},
+                success: function(data){
+                    alert(data);
+                    $(".caiji_ing").hide();
                 },
                 dataType: "html"
             });

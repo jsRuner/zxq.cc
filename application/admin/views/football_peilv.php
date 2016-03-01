@@ -77,6 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         tr,td{
            border-collapse: collapse;
+
        }
 
 

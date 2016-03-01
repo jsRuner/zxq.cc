@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by JetBrains PhpStorm.
- * User: 吴文付 hi_php@163.com
- * Date: 2016/2/26
- * Time: 13:01
+ * User: 吴文付
+ * Date: 2016/3/1
+ * Time: 13:42
  * description:
  *////////////////////////////////////////////////////////////////////
 //                            _ooOoo_                             //
@@ -26,24 +26,33 @@
 //                             `=---='                            //
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      //
 //         佛祖保佑       永无BUG        永不修改                    //
-//////////////////////////////////////////////////////////////////// 
-class Football_model extends MY_Model
-{
+////////////////////////////////////////////////////////////////////
 
+$config['page_query_string'] = TRUE;
+$config['reuse_query_string'] = True;
 
-    public function __construct()
-    {
-        parent::__construct();
+$config['full_tag_open'] = '<ul class="pagination">';
+$config['full_tag_close'] = '</ul>';
 
+$config['prev_tag_open'] = '<li>';
 
-    }
-    //分页查询。
-    public function select_list($limit,$offset){
+$config['prev_tag_close'] = '</li>';
 
-        return $this->db->get($this->table, $limit,$offset)->result_array();
-    }
+$config['next_tag_open'] = '<li>';
+$config['next_tag_close'] = '</li>';
 
+$config['cur_tag_open'] = '<li><strong>';
+$config['cur_tag_close'] = '</strong></li>';
 
+$config['num_tag_open'] = '<li>';
+$config['num_tag_close'] = '</li>';
 
+$config['first_link'] = '第一页';
 
-}
+$config['first_tag_open'] = '<li>';
+$config['first_tag_close'] = '</li>';
+
+$config['last_link'] = '最后一页';
+
+$config['last_tag_open'] = '<li>';
+$config['last_tag_close'] = '</li>';
