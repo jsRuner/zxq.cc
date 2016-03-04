@@ -101,8 +101,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th>胜</th>
                         <th>平</th>
                         <th>负</th>
-                        <th>比分</th>
-                        <th>比赛结果</th>
+<!--                        <th>比分</th>-->
+<!--                        <th>比赛结果</th>-->
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -122,13 +122,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
                             <th><?php echo $item['peilv_type'];?></th>
-                            <th><?php echo $item['peilv_win'];?></th>
-                            <th><?php echo $item['peilv_draw'];?></th>
-                            <th><?php echo $item['peilv_fail'];?></th>
+                            <th><?php echo $item['peilv_win'];?> &nbsp;<?php echo retruntrendstr($item['peilv_trend_win']);?> </th>
+                            <th><?php echo $item['peilv_draw'];?> &nbsp;<?php echo retruntrendstr($item['peilv_trend_draw']);?></th>
+                            <th><?php echo $item['peilv_fail'];?>&nbsp; <?php echo retruntrendstr($item['peilv_trend_fail']);?></th>
 
 
-                            <th><?php echo $footballinfo['football_score'];?></th>
-                            <th><?php echo $footballinfo['football_result'];?></th>
+<!--                            <th>--><?php //echo $footballinfo['football_score'];?><!--</th>-->
+<!--                            <th>--><?php //echo $footballinfo['football_result'];?><!--</th>-->
                             <th>
                                 <a href="<?php echo site_url('football/peilv_editor');?>?id=<?php echo $item['id'];?>&fid=<?php echo $footballinfo['id']?>">编辑</a>
 <!--                                <a href="#">查看</a>-->

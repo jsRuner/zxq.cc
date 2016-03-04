@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script type="text/javascript" src="/application/admin/views/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/application/admin/views/js/menu.js"></script>
 
-    <script type="text/javascript" src="/application/admin/views/js/DatePicker.js"></script>
+<!--    <script type="text/javascript" src="/application/admin/views/js/DatePicker.js"></script>-->
+    <script type="text/javascript" src="/application/admin/views/js/MY97DATEPICKER/WdatePicker.js"></script>
 
     <style>
         .pagination {

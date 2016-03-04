@@ -153,6 +153,14 @@ class Collect extends Admin_Controller
 
     }
 
+    /**
+     * 返回固定格式的数据即可。
+     * 从 http://info.sporttery.cn/football/hhad_list.php 获得数据
+     */
+    public function collectfromsporttery(){
+
+    }
+
 
 
 

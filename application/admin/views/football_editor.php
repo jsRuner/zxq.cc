@@ -182,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">日期</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="2016年2月25日" class="input-xlarge" name="football_date" onfocus="setday(this)" readonly="readonly" value="<?php echo date('Y-m-d',$footballinfo['football_date']);?>">
+                                        <input type="text" placeholder="2016年2月25日" class="input-xlarge" name="football_date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" value="<?php echo date('Y-m-d',$footballinfo['football_date']);?>">
                                         <p class="help-block">请输入日期</p>
                                     </div>
                                 </div>

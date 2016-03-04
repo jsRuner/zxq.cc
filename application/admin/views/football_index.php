@@ -110,7 +110,7 @@
                     <tr>
                         <th scope="row"><?php echo $item['id'];?></th>
                         <td><?php echo  $item['football_code'];?></td>
-                        <td><?php echo date("Y-m-d",$item['football_date']);?></td>
+                        <td><?php echo date("Y-m-d H:i:s",$item['football_date']);?></td>
                         <th><?php echo $item['football_team1'];?>&nbsp;VS&nbsp;<?php echo $item['football_team2'];?> </th>
                         <th><?php echo $item['team1_rank'];?>&nbsp;VS&nbsp;<?php echo $item['team2_rank'];?></th>
 

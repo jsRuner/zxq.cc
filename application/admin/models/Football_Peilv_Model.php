@@ -45,6 +45,21 @@ class Football_peilv_model extends MY_Model
         return $this->db->get($this->table)->result_array();
     }
 
+    //取得上一次的赔率。条件是fid peilv_type
+    public function find_last($fid,$pei_type){
+        $this->db->where('football_id',$fid);
+        $this->db->where('peilv_type',$pei_type);
+        return $this->db->get($this->table)->row_array();
+    }
+
+    //取得赔率所影响的下一次赔率记录。
+    public function find_next($peilv_trend_id)
+    {
+        $this->db->where('peilv_trend_id',$peilv_trend_id);
+        return $this->db->get($this->table)->row_array();
+    }
+
+
 
 
 

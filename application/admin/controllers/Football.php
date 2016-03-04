@@ -229,6 +229,7 @@ class Football extends Admin_Controller
 //        $this->load->view('football_peilv_add',$data);
     }
 
+
     public function peilv_add_form(){
 
         $this->form_validation->set_message('required', '{field} 必须不为空.');
@@ -243,6 +244,21 @@ class Football extends Admin_Controller
 
         $data = $this->input->post();
 
+        //计算趋势。peilv_trend 如果存在前一次的赔率。则需要计算。根据fid peilv_type查询。取得最新的。
+        $last_peilv = $this->football_peilv->find_last($data['fid'],$data['peilv_type']);
+        if ($last_peilv ){
+            //计算出差值。
+            $data['peilv_trend_win'] = $data['peilv_win'] - $last_peilv['peilv_win'];
+            $data['peilv_trend_draw'] = $data['peilv_draw'] - $last_peilv['peilv_draw'];
+            $data['peilv_trend_fail'] = $data['peilv_fail'] - $last_peilv['peilv_fail'];
+            $data['peilv_trend_id_prev'] = $last_peilv['id'];
+        }
+
+//        wwf_dump($data);
+//        exit(0);
+
+
+
         //比赛的id。
         $fid = $data['fid'];
         //修改fid为football_id。
@@ -251,9 +267,14 @@ class Football extends Admin_Controller
 //        var_dump($data);
         $result = $this->football_peilv->add($data);
 
+        //这里还得将该结果保存到关联的记录中取。
+        if ($last_peilv){
+            $id = $this->db->insert_id();
+            $this->football_peilv->editor($last_peilv['id'],array('peilv_trend_id_next'=>$id));
+        }
 
         //success
-        if (result){
+        if ($result){
             redirect("football/peilv?id=".$fid);
         }else{
             show_error("添加比赛出错","2000","呃呃呃。。。系统出现错误。");
@@ -294,6 +315,27 @@ class Football extends Admin_Controller
         }
 
         $data = $this->input->post();
+
+        //这里重新计算赔率趋势。先查询关联的赔率记录。
+        if ($data['peilv_trend_id_prev'] != 0){
+            //查询上一条。重新计算自身的趋势
+            $prev_peilv = $this->football_peilv->find($data['peilv_trend_id_prev']);
+            $data['peilv_trend_win'] = $data['peilv_win'] - $prev_peilv['peilv_win'];
+            $data['peilv_trend_draw'] = $data['peilv_draw'] - $prev_peilv['peilv_draw'];
+            $data['peilv_trend_fail'] = $data['peilv_fail'] - $prev_peilv['peilv_fail'];
+        }
+
+        //查询下一条记录。改变下一条记录的趋势
+        if($data['peilv_trend_id_next'] != 0 ){
+            //查询下一条。重新计算自身的趋势
+            $next_peilv = $this->football_peilv->find($data['peilv_trend_id_next']);
+            $next_peilv['peilv_trend_win'] = $next_peilv['peilv_win'] - $data['peilv_win'];
+            $next_peilv['peilv_trend_draw'] = $next_peilv['peilv_draw'] - $data['peilv_draw'];
+            $next_peilv['peilv_trend_fail'] = $next_peilv['peilv_fail'] - $data['peilv_fail'];
+//            unset($next_peilv['id']);
+            //更新。
+            $this->football_peilv->editor($next_peilv['id'],$next_peilv);
+        }
 
         //赔率的id
         $id = $data['id'];

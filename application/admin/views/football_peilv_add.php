@@ -187,7 +187,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">日期</label>
                                     <div class="controls">
-                                        <input type="text" class="form-control" disabled placeholder="2016年2月25日"  style="width: 270px;"  value="<?php echo date('Y-m-d',$footballinfo['football_date']);?>">
+                                        <input type="text" class="form-control" disabled placeholder="2016年2月25日"  style="width: 270px;"  value="<?php echo date('Y-m-d H:i:s',$footballinfo['football_date']);?>">
                                         <p class="help-block">请输入日期</p>
                                     </div>
                                 </div>

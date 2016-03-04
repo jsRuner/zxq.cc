@@ -165,6 +165,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                             <input type="hidden" name="fid" value="<?php echo $footballinfo['id'];?>">
                             <input type="hidden" name="id" value="<?php echo $football_peilvinfo['id'];?>">
+                            <input type="hidden" name="peilv_trend_id_prev" value="<?php echo $football_peilvinfo['peilv_trend_id_prev'];?>">
+                            <input type="hidden" name="peilv_trend_id_next" value="<?php echo $football_peilvinfo['peilv_trend_id_next'];?>">
 
 
                             <fieldset>

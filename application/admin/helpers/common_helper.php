@@ -233,3 +233,18 @@ function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {
     }
     return $suffix ? $slice.'...' : $slice;
 }
+
+//返回赔率趋势字符串.如果为默认值 10000.则没有提示。
+function retruntrendstr($float){
+    if ($float == 10000){
+        return "";
+    }
+
+    if ($float > 0){
+        return "上升".$float;
+    }else if($float == 0){
+        return "持平";
+    }else{
+        return "下降".abs($float);
+    }
+}
