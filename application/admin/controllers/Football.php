@@ -203,7 +203,37 @@ class Football extends Admin_Controller
     public function peilv_delete(){
 
         $id = $this->input->post('id');
+
+        $data = $this->football_peilv->find($id);
+        //需要删除关联的赔率。
+        //头部赔率。则下家的趋势需要重新计算。则下家的趋势为10000. 同时上级id为0
+        if($data['peilv_trend_id_prev'] == 0 && $data['peilv_trend_id_next'] != 0 ){
+            //查询下一条。重新计算自身的趋势
+            $next_peilv = $this->football_peilv->find($data['peilv_trend_id_next']);
+            $next_peilv['peilv_trend_win'] = 10000;
+            $next_peilv['peilv_trend_draw'] = 10000;
+            $next_peilv['peilv_trend_fail'] = 10000;
+            $next_peilv['peilv_trend_id_prev'] = 0;
+//            unset($next_peilv['id']);
+            //更新。
+            $this->football_peilv->editor($next_peilv['id'],$next_peilv);
+
+        }
+        //尾部赔率。
+        if($data['peilv_trend_id_prev'] != 0 && $data['peilv_trend_id_next'] == 0 ){
+            //查询上一条。修改上一条的记录中的下家id为0
+            $prev_peilv = $this->football_peilv->find($data['peilv_trend_id_prev']);
+            $prev_peilv['peilv_trend_id_next'] = 0;
+//            unset($next_peilv['id']);
+            //更新。
+            $this->football_peilv->editor($prev_peilv['id'],$prev_peilv);
+        }
+        //中间的赔率
         $result = $this->football_peilv->delete($id);
+
+
+
+
 
         if($result){
             echo "删除成功";

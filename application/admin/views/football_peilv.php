@@ -166,6 +166,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     alert(data);
                     //删除当前a标签的祖先元素 的tr.
                     $(obj).parents("tr").remove();
+                    window.location.reload();
                 },
                 dataType: "html"
             });
