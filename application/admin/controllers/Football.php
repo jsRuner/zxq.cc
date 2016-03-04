@@ -184,7 +184,7 @@ class Football extends Admin_Controller
         $data['footballinfo'] = $footballinfo;
 
         //赔率列表
-        $peilvlist = $this->football_peilv->select_list_by_fid($fid);
+        $peilvlist = $this->football_peilv->select_list_by_fid_order($fid);
 
 
 
@@ -274,6 +274,9 @@ class Football extends Admin_Controller
 
         $data = $this->input->post();
 
+        //转换日期。
+        $data['peilv_date'] = strtotime($data['peilv_date']);
+
         //计算趋势。peilv_trend 如果存在前一次的赔率。则需要计算。根据fid peilv_type查询。取得最新的。
         $last_peilv = $this->football_peilv->find_last($data['fid'],$data['peilv_type']);
         if ($last_peilv ){
@@ -345,6 +348,9 @@ class Football extends Admin_Controller
         }
 
         $data = $this->input->post();
+
+        //转换日期。
+        $data['peilv_date'] = strtotime($data['peilv_date']);
 
         //这里重新计算赔率趋势。先查询关联的赔率记录。
         if ($data['peilv_trend_id_prev'] != 0){

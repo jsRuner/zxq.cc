@@ -93,10 +93,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tr>
                         <th>#</th>
                         <th>赛事编号</th>
-<!--                        <th>联赛</th>-->
-                        <th>日期</th>
                         <th>主队&nbsp;VS&nbsp; 客队</th>
-                        <th>赛季排名</th>
+                        <th>赔率时间</th>
                         <th>让球</th>
                         <th>胜</th>
                         <th>平</th>
@@ -116,9 +114,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <tr>
                             <th scope="row"><?php echo $item['id'];?></th>
                             <td><?php echo  $footballinfo['football_code'];?></td>
-                            <td><?php echo date("Y-m-d",$footballinfo['football_date']);?></td>
                             <th><?php echo $footballinfo['football_team1'];?>&nbsp;VS&nbsp;<?php echo $footballinfo['football_team2'];?> </th>
-                            <th><?php echo $footballinfo['team1_rank'];?>&nbsp;VS&nbsp;<?php echo $footballinfo['team2_rank'];?></th>
+                            <td><?php echo date("Y-m-d H:i:s",$item['peilv_date']);?></td>
 
 
                             <th><?php echo $item['peilv_type'];?></th>

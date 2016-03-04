@@ -45,6 +45,17 @@ class Football_peilv_model extends MY_Model
         return $this->db->get($this->table)->result_array();
     }
 
+    public function select_list_by_fid_order($options = array()){
+        if (!is_numeric($options)){
+            return false;
+        }
+        $this->db->where(array('football_id' => $options));
+        $this->db->order_by('peilv_type','peilv_date');
+        return $this->db->get($this->table)->result_array();
+    }
+
+
+
     //取得上一次的赔率。条件是fid peilv_type
     public function find_last($fid,$pei_type){
         $this->db->where('football_id',$fid);

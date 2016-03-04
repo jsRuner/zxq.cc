@@ -185,15 +185,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
 
-                                <div class="control-group">
 
-                                    <!-- Text input-->
-                                    <label class="control-label" for="input01">日期</label>
-                                    <div class="controls">
-                                        <input type="text" class="form-control" disabled placeholder="2016年2月25日"  style="width: 270px;"  value="<?php echo date('Y-m-d',$footballinfo['football_date']);?>">
-                                        <p class="help-block">请输入日期</p>
-                                    </div>
-                                </div>
 
 
 
@@ -215,6 +207,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="controls">
                                         <input type="text" class="form-control" disabled placeholder="比赛球队"   style="width: 270px;" value="<?php echo $footballinfo['football_team2']?>">
                                         <p class="help-block">请输入比赛球队</p>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+
+                                    <!-- Text input-->
+                                    <label class="control-label" for="input01">赔率日期</label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control"  placeholder="2016年2月25日"  style="width: 270px;" name="peilv_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"   value="<?php echo date('Y-m-d',$football_peilvinfo['peilv_date']);?>" >
+                                        <p class="help-block">请输入日期</p>
                                     </div>
                                 </div>
 
