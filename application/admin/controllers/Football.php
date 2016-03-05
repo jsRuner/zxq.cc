@@ -48,6 +48,15 @@ class Football extends Admin_Controller
     public function index(){
 
         $querystr = $this->input->get('querystr');
+        $rulestr = $this->input->get('rulestr');
+        if($rulestr){
+            $data['rulestr'] = $rulestr;
+        }else{
+            $data['rulestr'] = "";
+
+        }
+
+
 
         if($querystr){
             $okfids = json_decode($querystr);
@@ -157,7 +166,7 @@ class Football extends Admin_Controller
         if ($result){
             redirect("football/index");
         }else{
-            show_error("编辑比赛出错","2000","呃呃呃。。。系统出现错误。");
+            show_error("编辑比赛出错","200","呃呃呃。。。系统出现错误。");
         }
 
     }
@@ -186,7 +195,7 @@ class Football extends Admin_Controller
         if ($result){
             redirect("football/index");
         }else{
-            show_error("添加比赛出错","2000","呃呃呃。。。系统出现错误。");
+            show_error("添加比赛出错","200","呃呃呃。。。系统出现错误。");
         }
     }
 
@@ -245,7 +254,30 @@ class Football extends Admin_Controller
             //更新。
             $this->football_peilv->editor($prev_peilv['id'],$prev_peilv);
         }
-        //中间的赔率
+        //中间的赔率。如果是中间的话。则需要修改关联前后2个id。
+        if($data['peilv_trend_id_prev'] != 0 && $data['peilv_trend_id_next'] != 0 ){
+
+            //取得上一条。只需要更新管理的下一条id
+            $prev_peilv = $this->football_peilv->find($data['peilv_trend_id_prev']);
+            $next_peilv = $this->football_peilv->find($data['peilv_trend_id_next']);
+            $prev_peilv['peilv_trend_id_next'] = $next_peilv['id'];
+            //更新。
+            $this->football_peilv->editor($prev_peilv['id'],$prev_peilv);
+
+            //更新下一条的趋势。
+            $next_peilv['peilv_trend_win'] = $next_peilv['peilv_win']- $prev_peilv['peilv_win'];
+            $next_peilv['peilv_trend_draw'] = $next_peilv['peilv_draw']- $prev_peilv['peilv_draw'];
+            $next_peilv['peilv_trend_fail'] = $next_peilv['peilv_fail']- $prev_peilv['peilv_fail'];
+            $next_peilv['peilv_trend_id_prev'] = $prev_peilv['id'];
+            $this->football_peilv->editor($next_peilv['id'],$next_peilv);
+
+        }
+
+
+
+
+
+
         $result = $this->football_peilv->delete($id);
 
 
@@ -327,7 +359,7 @@ class Football extends Admin_Controller
         if ($result){
             redirect("football/peilv?id=".$fid);
         }else{
-            show_error("添加比赛出错","2000","呃呃呃。。。系统出现错误。");
+            show_error("添加比赛出错","200","呃呃呃。。。系统出现错误。");
         }
 
     }
@@ -403,7 +435,7 @@ class Football extends Admin_Controller
         if ($result){
             redirect("football/peilv?id=".$fid);
         }else{
-            show_error("编辑比赛赔率出错","2000","呃呃呃。。。系统出现错误。");
+            show_error("编辑比赛赔率出错","200","呃呃呃。。。系统出现错误。");
         }
 
     }
@@ -446,34 +478,86 @@ class Football extends Admin_Controller
             //获取该比赛下的规则。产生为字符串111或者101
             //规则如果是111.则依次必须大于0. todo:先只查询胜的趋势。
             $current_win = '';
+            $current_draw = '';
+            $current_fail = '';
+
             //从第二条记录开始。
             for($i =1;$i<=$data['peilv_change_num'];$i++){
-
-//                echo $i.'xxxxx:'.$temp[$i]['peilv_trend_win'];
-//                echo "<br>";
                 if($temp[$i]['peilv_trend_win'] > 0){
                     $current_win .= '升';
-                }elseif($temp[$i]['peilv_trend_win'] = 0){
+                }elseif($temp[$i]['peilv_trend_win'] == 0){
                     $current_win .= '平';
                 }else{
                     $current_win .= '降';
                 }
-            }
 
+                if($temp[$i]['peilv_trend_draw'] > 0){
+                    $current_draw .= '升';
+                }elseif( $temp[$i]['peilv_trend_draw'] ==0){
+                    $current_draw .= '平';
+                }else{
+                    $current_draw .= '降';
+                }
+
+
+
+                if($temp[$i]['peilv_trend_fail'] > 0){
+                    $current_fail .= '升';
+                }elseif($temp[$i]['peilv_trend_fail'] == 0){
+                    $current_fail.= '平';
+                }else{
+                    $current_fail .= '降';
+                }
+            }
+//            echo $fid;
 //            echo "<br>";
 //            echo $current_win;
 //            echo "<br>";
-//            echo $data['peilv_win_rule'];
+//            echo $current_draw;
 //            echo "<br>";
-//            echo $current_win == $data['peilv_win_rule'];
+//            echo $current_fail;
 //            echo "<br>";
-            //如果相等。则保存该id
-            if ($current_win == $data['peilv_win_rule']){
+//            exit();
+
+            //3个规则。存在则检查是否相等。不存在则不用比较。
+            $win_bool = $draw_bool = $fail_bool = true;
+            if($data['peilv_win_rule'] && $data['peilv_win_rule'] != ''){
+                if ($current_win != $data['peilv_win_rule']){
+                    $win_bool = false;
+
+                }
+            }
+            if($data['peilv_draw_rule'] && $data['peilv_draw_rule'] != ''){
+                if ($current_draw != $data['peilv_draw_rule']){
+                    $draw_bool = false;
+                }
+            }
+            if($data['peilv_fail_rule'] && $data['peilv_fail_rule'] != ''){
+                if ($current_fail != $data['peilv_fail_rule']){
+
+                    $fail_bool = false;
+                }
+            }
+            if($win_bool && $draw_bool && $fail_bool){
                 $okfids[] = $fid;
             }
         }
 
-        redirect("football/index?querystr=".urlencode(json_encode($okfids)));
+        if(count($okfids) == 0){
+
+            show_error("查询记录为空","200","呃呃呃。。。系统出现错误。");
+            return;
+        }else{
+            //增加当前的规则说明。例如
+            $rulestr = "当前查询的条件是:让球数".$data['peilv_type'];
+            $rulestr .= ",次数为:".$data['peilv_change_num'];
+            $rulestr .= ",胜:".($data['peilv_win_rule']==""?"无":$data['peilv_win_rule']);
+            $rulestr .=",平:".($data['peilv_draw_rule']==""?"无":$data['peilv_draw_rule']);
+            $rulestr .= ",负:".($data['peilv_fail_rule']==""?"无":$data['peilv_fail_rule']);
+            redirect("football/index?querystr=".urlencode(json_encode($okfids))."&rulestr=".urlencode($rulestr));
+
+        }
+
 
 //        wwf_dump($okfids);
         //查询列表。todo:查询结果分页暂时不处理。

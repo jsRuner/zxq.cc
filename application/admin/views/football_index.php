@@ -78,6 +78,8 @@
 
     </style>
 
+    <p style="margin-left: 15px;color: red"><?php echo $rulestr;?></p>
+
 
 
                 <table class="table table-bordered">

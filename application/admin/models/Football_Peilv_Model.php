@@ -55,13 +55,14 @@ class Football_peilv_model extends MY_Model
         return $this->db->get($this->table)->result_array();
     }
 
-
+    //获取赔率，按日期排序。
     public function select_list_by_fid_order($options = array()){
         if (!is_numeric($options)){
             return false;
         }
         $this->db->where(array('football_id' => $options));
-        $this->db->order_by('peilv_type','peilv_date');
+        $this->db->order_by('peilv_date','asc');
+        $this->db->order_by('peilv_type','asc');
         return $this->db->get($this->table)->result_array();
     }
 
@@ -71,6 +72,7 @@ class Football_peilv_model extends MY_Model
     public function find_last($fid,$pei_type){
         $this->db->where('football_id',$fid);
         $this->db->where('peilv_type',$pei_type);
+        $this->db->order_by('id','desc');
         return $this->db->get($this->table)->row_array();
     }
 
