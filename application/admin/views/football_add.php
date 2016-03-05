@@ -170,17 +170,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label class="control-label" for="input01">比赛编号</label>
                                     <div class="controls">
                                         <input type="text" placeholder="比赛编号" class="input-xlarge" name="football_code">
-                                        <p class="help-block">请输入比赛编号</p>
+                                        <p class="help-block Validform_label">比赛编号</p>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
 
                                     <!-- Text input-->
-                                    <label class="control-label" for="input01">日期</label>
+                                    <label class="control-label" for="input01">球赛日期</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="2016年2月25日" class="input-xlarge" name="football_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly">
-                                        <p class="help-block">请输入日期</p>
+                                        <input type="text" placeholder="2016-3-5 14:34:51" class="input-xlarge" name="football_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" datatype="*">
+                                        <p class="help-block Validform_label">球赛日期</p>
                                     </div>
                                 </div>
 
@@ -191,8 +191,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">主队</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="比赛球队" class="input-xlarge" name="football_team1">
-                                        <p class="help-block">请输入比赛球队</p>
+                                        <input type="text" placeholder="比赛球队" class="input-xlarge" name="football_team1" datatype="*">
+                                        <p class="help-block Validform_label">比赛主队</p>
                                     </div>
                                 </div>
 
@@ -202,7 +202,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label class="control-label" for="input01">主队排名</label>
                                     <div class="controls">
                                         <input type="text" placeholder="主队排名" class="input-xlarge" name="team1_rank">
-                                        <p class="help-block">主队排名</p>
+                                        <p class="help-block Validform_label">主队排名</p>
                                     </div>
                                 </div>
 
@@ -213,7 +213,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label class="control-label" for="input01">客队</label>
                                     <div class="controls">
                                         <input type="text" placeholder="比赛球队" class="input-xlarge" name="football_team2">
-                                        <p class="help-block">请输入比赛球队</p>
+                                        <p class="help-block Validform_label">比赛球队</p>
                                     </div>
                                 </div>
 
@@ -223,7 +223,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label class="control-label" for="input01">客队排名</label>
                                     <div class="controls">
                                         <input type="text" placeholder="客队排名" class="input-xlarge" name="team2_rank">
-                                        <p class="help-block">客队排名</p>
+                                        <p class="help-block Validform_label">客队排名</p>
                                     </div>
                                 </div>
 
@@ -231,7 +231,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label class="control-label" for="input01">比分</label>
                                     <div class="controls">
                                         <input type="text" placeholder="比分" class="input-xlarge" name="football_score">
-                                        <p class="help-block">比分</p>
+                                        <p class="help-block Validform_label">比分</p>
                                     </div>
                                 </div>
 
@@ -241,7 +241,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label class="control-label" for="input01">比赛结果</label>
                                     <div class="controls">
                                         <input type="text" placeholder="比赛结果" class="input-xlarge" name="football_result">
-                                        <p class="help-block">比赛结果</p>
+                                        <p class="help-block Validform_label">比赛结果</p>
                                     </div>
                                 </div>
 
@@ -250,7 +250,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label class="control-label" for="input01">赔率</label>
                                     <div class="controls">
                                         <input type="text" placeholder="赔率" class="input-xlarge">
-                                        <p class="help-block">赔率</p>
+                                        <p class="help-block Validform_label">赔率</p>
                                     </div>
                                 </div>-->
 
@@ -265,3 +265,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                             </fieldset>
                             </form>
+

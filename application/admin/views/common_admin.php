@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!--    <script type="text/javascript" src="/application/admin/views/js/DatePicker.js"></script>-->
     <script type="text/javascript" src="/application/admin/views/js/MY97DATEPICKER/WdatePicker.js"></script>
+<!--表单验证-->
+    <script type="text/javascript" src="/application/admin/views/js/Validform_v5.3.2_min.js"></script>
 
     <style>
         .pagination {
@@ -92,13 +94,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </li>
 
-            <li <?php if($this->router->class == 'collect') echo 'class="selected"'?> >
+           <!-- <li <?php /*if($this->router->class == 'collect') echo 'class="selected"'*/?> >
                 <h4 class="M2"><span></span>采集管理</h4>
-                <div class="list-item none" <?php if($this->router->class == 'collect') echo 'style="display:block;"'?> >
-                    <a href="<?php echo site_url('collect/index');?>">采集管理</a>
-                    <a href="<?php echo site_url('collect/add');?>">新增记录</a>
+                <div class="list-item none" <?php /*if($this->router->class == 'collect') echo 'style="display:block;"'*/?> >
+                    <a href="<?php /*echo site_url('collect/index');*/?>">采集管理</a>
+                    <a href="<?php /*echo site_url('collect/add');*/?>">新增记录</a>
                 </div>
-            </li>
+            </li>-->
 
         </ul>
     </div>
@@ -124,6 +126,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script>
         navList(12);
+
+        //表单验证。
+        $("form").Validform();
+
 </script>
 
 
