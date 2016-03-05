@@ -47,15 +47,32 @@ class Football extends Admin_Controller
 
     public function index(){
 
+        $querystr = $this->input->get('querystr');
 
+        if($querystr){
+            $okfids = json_decode($querystr);
+        }
 
         //查询条件。todo:
         $limit =  15;
         $offset = intval($this->input->get('per_page'));
-        $result = $this->football->select_list($limit,$offset);
+        if($querystr){
+            $result = $this->football->select_list_option($limit,$offset,$okfids);
+        }else{
+            $result = $this->football->select_list($limit,$offset);
+        }
         $this->load->library('pagination');
         $config['base_url'] = "http://zxq.cc/admin.php/football/index";
-        $config['total_rows'] = $this->football->count();
+
+        if($querystr){
+            //数组。
+            $config['total_rows'] = $this->football->count(array('where_in'=>array('id',$okfids)));
+
+        }else{
+            $config['total_rows'] = $this->football->count();
+        }
+
+
         $this->pagination->initialize($config);
         $data['paginationstr'] = $this->pagination->create_links();
 
@@ -390,6 +407,96 @@ class Football extends Admin_Controller
         }
 
     }
+
+    //查询的表单
+    public function search()
+    {
+        $data['tpl'] = "football_search";
+        $data['nav2'] ="查询记录";
+        $this->load->view('common_admin',$data);
+
+    }
+    //先检查符合变化次数的记录。如果要变化3次，则对应的记录需要4条。
+    //
+    public function search_form(){
+        $data = $this->input->post();
+        //同一个football_id peilv_type 统计数量。
+         $result = $this->football_peilv->select_list_num_group_fid_type($data['peilv_type']);
+        //筛选出符合要求的记录。
+        $fids = array();
+        foreach($result as $item){
+            if($item['peilv_change_num'] > $data['peilv_change_num']){
+                $fids[] = $item['football_id'];
+            }
+        }
+        if(count($fids) <= 0){
+            show_error("查询记录为空","200","呃呃呃。。。系统出现错误。");
+            return;
+        }
+
+        //查询所有符合条件的赔率记录。根据fid进行分组。如果是111.则查询条件是。
+        //依次检查对应的比赛是否可以。如果可以。则存储该比赛id。
+        $okfids = array();
+        foreach($fids as $fid){
+            //查询该比赛的下的peilv_type记录。然后依次检查是否符合要求。
+             $temp = $this->football_peilv->select_list_by_fid_order_peilvdate($fid);
+
+//            wwf_dump($temp);
+//            exit(0);
+            //获取该比赛下的规则。产生为字符串111或者101
+            //规则如果是111.则依次必须大于0. todo:先只查询胜的趋势。
+            $current_win = '';
+            //从第二条记录开始。
+            for($i =1;$i<=$data['peilv_change_num'];$i++){
+
+//                echo $i.'xxxxx:'.$temp[$i]['peilv_trend_win'];
+//                echo "<br>";
+                if($temp[$i]['peilv_trend_win'] > 0){
+                    $current_win .= '升';
+                }elseif($temp[$i]['peilv_trend_win'] = 0){
+                    $current_win .= '平';
+                }else{
+                    $current_win .= '降';
+                }
+            }
+
+//            echo "<br>";
+//            echo $current_win;
+//            echo "<br>";
+//            echo $data['peilv_win_rule'];
+//            echo "<br>";
+//            echo $current_win == $data['peilv_win_rule'];
+//            echo "<br>";
+            //如果相等。则保存该id
+            if ($current_win == $data['peilv_win_rule']){
+                $okfids[] = $fid;
+            }
+        }
+
+        redirect("football/index?querystr=".urlencode(json_encode($okfids)));
+
+//        wwf_dump($okfids);
+        //查询列表。todo:查询结果分页暂时不处理。
+//        $limit =  15;
+//        $offset = intval($this->input->get('per_page'));
+//        $result = $this->football->select_list_option($limit,$offset,$okfids);
+//        $this->load->library('pagination');
+//        $config['base_url'] = "http://zxq.cc/admin.php/search/search_form";
+//        $config['total_rows'] = $this->football->count();
+//        $this->pagination->initialize($config);
+//        $data['paginationstr'] = $this->pagination->create_links();
+//        $data['footballlist'] = $result;
+//        $data['tpl'] = "football_search_index";
+//        $data['nav2'] ="查询结果";
+//        $this->load->view('common_admin',$data);
+    }
+
+//    //搜索的结果展示。
+//    public function search_index($searchids){
+//
+//    }
+
+
 
 
 

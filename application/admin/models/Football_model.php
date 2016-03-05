@@ -43,6 +43,14 @@ class Football_model extends MY_Model
         return $this->db->get($this->table, $limit,$offset)->result_array();
     }
 
+    //有条件的分页查询
+    public function select_list_option($limit,$offset,$option){
+        $this->db->where_in('id',$option);
+        return $this->db->get($this->table, $limit,$offset)->result_array();
+    }
+
+
+
 
 
 

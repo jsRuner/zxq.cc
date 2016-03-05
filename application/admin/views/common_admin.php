@@ -88,6 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="list-item none" <?php if($this->router->class == 'football') echo 'style="display:block;"'?> >
                     <a href="<?php echo site_url('football/index');?>">列表管理</a>
                     <a href="<?php echo site_url('football/add');?>">新增记录</a>
+                    <a href="<?php echo site_url('football/search');?>">查询记录</a>
                 </div>
             </li>
 
