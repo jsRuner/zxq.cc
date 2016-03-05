@@ -211,7 +211,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">赔率日期</label>
                                     <div class="controls">
-                                        <input type="text" class="form-control"  placeholder="2016年2月25日"  style="width: 270px;" name="peilv_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" >
+                                        <input type="text" placeholder="赔率日期" class="input-xlarge" name="peilv_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly">
                                         <p class="help-block">请输入日期</p>
                                     </div>
                                 </div>

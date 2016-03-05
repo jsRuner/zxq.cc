@@ -313,6 +313,7 @@ class Football extends Admin_Controller
 
         $this->form_validation->set_message('required', '{field} 必须不为空.');
         $this->form_validation->set_rules('peilv_type', '让球数', 'required');
+        $this->form_validation->set_rules('peilv_date', '赔率时间', 'required');
 
         //表单验证
         if ($this->form_validation->run() == FALSE)
@@ -385,6 +386,9 @@ class Football extends Admin_Controller
 
     //处理赔率表单
     public function peilv_editor_form(){
+
+//        wwf_dump($this->input->post());
+//        exit(0);
 
         $this->form_validation->set_message('required', '{field} 必须不为空.');
         $this->form_validation->set_rules('peilv_type', '让球数', 'required');

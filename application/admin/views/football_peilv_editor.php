@@ -165,6 +165,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                             <input type="hidden" name="fid" value="<?php echo $footballinfo['id'];?>">
                             <input type="hidden" name="id" value="<?php echo $football_peilvinfo['id'];?>">
+                            <input type="hidden" name="peilv_type" value="<?php echo $football_peilvinfo['peilv_type'];?>">
                             <input type="hidden" name="peilv_trend_id_prev" value="<?php echo $football_peilvinfo['peilv_trend_id_prev'];?>">
                             <input type="hidden" name="peilv_trend_id_next" value="<?php echo $football_peilvinfo['peilv_trend_id_next'];?>">
 
@@ -212,22 +213,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                 <div class="control-group">
 
-                                    <!-- Text input-->
-                                    <label class="control-label" for="input01">赔率日期</label>
+                                    <label class="control-label" for="input01">让球</label>
                                     <div class="controls">
-                                        <input type="text" class="form-control"  placeholder="2016年2月25日"  style="width: 270px;" name="peilv_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"   value="<?php echo date('Y-m-d',$football_peilvinfo['peilv_date']);?>" >
-                                        <p class="help-block">请输入日期</p>
+                                        <input type="text" class="form-control" disabled placeholder="让球" class="input-xlarge" style="width: 270px;" name="peilv_type" value="<?php echo $football_peilvinfo['peilv_type']?>">
+                                        <p class="help-block">让球数</p>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
 
-                                    <label class="control-label" for="input01">让球</label>
+                                    <!-- Text input-->
+                                    <label class="control-label" for="input01">赔率日期</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="让球" class="input-xlarge" name="peilv_type" value="<?php echo $football_peilvinfo['peilv_type']?>">
-                                        <p class="help-block">让球数</p>
+                                        <input type="text" placeholder="赔率日期" class="input-xlarge" name="peilv_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" value="<?php echo date('Y-m-d H:i:s',$football_peilvinfo['peilv_date']);?>">
+                                        <p class="help-block">请输入日期</p>
                                     </div>
                                 </div>
+
+
 
 
                                 <div class="control-group">
