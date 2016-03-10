@@ -49,24 +49,87 @@ class Football extends Admin_Controller
 
         $querystr = $this->input->get('querystr');
         $rulestr = $this->input->get('rulestr');
+
+//      该查询与赔率查询是独立的。
+        $football_peilv_win = $this->input->get('football_peilv_win');
+        $football_peilv_draw = $this->input->get('football_peilv_draw');
+        $football_peilv_fail = $this->input->get('football_peilv_fail');
+
+
+        $football_peilv_where= array();
+        if($football_peilv_win){
+            $football_peilv_where['where']['peilv_win'] = $football_peilv_win;
+        }
+        if($football_peilv_draw){
+            $football_peilv_where['where']['peilv_draw'] = $football_peilv_draw;
+        }
+        if($football_peilv_fail){
+            $football_peilv_where['where']['peilv_fail'] = $football_peilv_fail;
+        }
+        //先查询出符合的条件的比赛id.
+        $okfids_peilv = array();
+        if(!empty($football_peilv_where)){
+            $okfids_peilv = $this->football_peilv->find_fids_by_peilv($football_peilv_where);
+        }
+
+//        wwf_dump($okfids_peilv);
+//        exit(0);
+
         if($rulestr){
             $data['rulestr'] = $rulestr;
+            if($football_peilv_win){
+                $data['rulestr'] .= '胜的赔率值:'.$football_peilv_win;
+            }
+            if($football_peilv_draw){
+                $data['rulestr'] .= '平的赔率值:'.$football_peilv_draw;
+            }
+            if($football_peilv_fail){
+                $data['rulestr'] .= '胜的赔率值:'.$football_peilv_fail;
+            }
+
+
+
         }else{
             $data['rulestr'] = "";
+            if($football_peilv_win){
+                $data['rulestr'] .= '胜的赔率值:'.$football_peilv_win;
+            }
+            if($football_peilv_draw){
+                $data['rulestr'] .= '平的赔率值:'.$football_peilv_draw;
+            }
+            if($football_peilv_fail){
+                $data['rulestr'] .= '负的赔率值:'.$football_peilv_fail;
+            }
+
+            if(!empty($data['rulestr'])){
+                $data['rulestr'] = '当前的查询条件:'.$data['rulestr'];
+            }
 
         }
 
-
-
         if($querystr){
             $okfids = json_decode($querystr);
+
+            //如果有二级查询，则合并id。
+            if(!empty($okfids_peilv)){
+                $okfids = array_merge($okfids,$okfids_peilv);
+            }
         }
 
         //查询条件。todo:
         $limit =  15;
         $offset = intval($this->input->get('per_page'));
+
+        //存在赔率变化查询。则
         if($querystr){
             $result = $this->football->select_list_option($limit,$offset,$okfids);
+            //存在二次查询。
+        }elseif($football_peilv_win ||$football_peilv_draw||$football_peilv_fail){
+            //如果存在这个。
+            if(empty($okfids_peilv)){
+                $okfids_peilv = array('-1');
+            }
+            $result = $this->football->select_list_option($limit,$offset,$okfids_peilv);
         }else{
             $result = $this->football->select_list($limit,$offset);
         }
@@ -77,6 +140,9 @@ class Football extends Admin_Controller
             //数组。
             $config['total_rows'] = $this->football->count(array('where_in'=>array('id',$okfids)));
 
+        }elseif(!empty($okfids_peilv)){
+            //如果存在这个。
+            $config['total_rows'] = $this->football->count(array('where_in'=>array('id',$okfids_peilv)));
         }else{
             $config['total_rows'] = $this->football->count();
         }
@@ -218,6 +284,8 @@ class Football extends Admin_Controller
 
 
         $data['peilvlist'] = $peilvlist;
+//        wwf_dump($data);
+//        exit(0);
 
         $data['tpl'] = "football_peilv";
         $data['nav2'] ="赔率列表";
@@ -558,6 +626,7 @@ class Football extends Admin_Controller
             $rulestr .= ",胜:".($data['peilv_win_rule']==""?"无":$data['peilv_win_rule']);
             $rulestr .=",平:".($data['peilv_draw_rule']==""?"无":$data['peilv_draw_rule']);
             $rulestr .= ",负:".($data['peilv_fail_rule']==""?"无":$data['peilv_fail_rule']);
+            $rulestr .= "。";
             redirect("football/index?querystr=".urlencode(json_encode($okfids))."&rulestr=".urlencode($rulestr));
 
         }

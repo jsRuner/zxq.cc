@@ -175,8 +175,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">让球数</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="让球数" class="input-xlarge" name="peilv_type" datatype="*" nullmsg="请填写让球数">
-                                        <p class="help-block">请输入让球数</p>
+                                        <input type="text" placeholder="让球数" class="input-xlarge" name="peilv_type" datatype="*">
+                                        <p class="help-block Validform_label">请输入让球数</p>
                                     </div>
                                 </div>
 
@@ -185,8 +185,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">赔率变化次数</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="赔率变化次数" class="input-xlarge" name="peilv_change_num" datatype="*" nullmsg="请填写赔率变化次数">
-                                        <p class="help-block">请输入赔率变化次数</p>
+                                        <input type="text" placeholder="赔率变化次数" class="input-xlarge" name="peilv_change_num" datatype="n" >
+                                        <p class="help-block Validform_label">赔率变化次数</p>
                                     </div>
                                 </div>
 

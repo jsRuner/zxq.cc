@@ -211,7 +211,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">赔率日期</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="赔率日期" class="input-xlarge" name="peilv_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly">
+                                        <input type="text" placeholder="赔率日期" class="input-xlarge" name="peilv_date" value="<?php echo date('Y-m-d H:i:s',time());?>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly">
                                         <p class="help-block">请输入日期</p>
                                     </div>
                                 </div>
@@ -221,8 +221,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <label class="control-label" for="input01">让球</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="让球" class="input-xlarge" name="peilv_type">
-                                        <p class="help-block">让球数</p>
+                                        <input type="text" placeholder="让球" class="input-xlarge" name="peilv_type" datatype="*">
+                                        <p class="help-block Validform_label">让球数</p>
                                     </div>
                                 </div>
 
@@ -231,8 +231,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <label class="control-label" for="input01">胜</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="胜" class="input-xlarge" name="peilv_win">
-                                        <p class="help-block">胜</p>
+                                        <input type="text" placeholder="胜" class="input-xlarge" name="peilv_win" datatype="*">
+                                        <p class="help-block Validform_label">胜</p>
                                     </div>
                                 </div>
 
@@ -242,8 +242,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <label class="control-label" for="input01">平</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="平" class="input-xlarge" name="peilv_draw">
-                                        <p class="help-block">平</p>
+                                        <input type="text" placeholder="平" class="input-xlarge" name="peilv_draw" datatype="*">
+                                        <p class="help-block Validform_label">平</p>
                                     </div>
                                 </div>
 
@@ -251,8 +251,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <label class="control-label" for="input01">负</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="负" class="input-xlarge" name="peilv_fail">
-                                        <p class="help-block">负</p>
+                                        <input type="text" placeholder="负" class="input-xlarge" name="peilv_fail" datatype="*">
+                                        <p class="help-block Validform_label">负</p>
                                     </div>
                                 </div>
 

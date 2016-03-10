@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script type="text/javascript" src="/application/admin/views/js/menu.js"></script>
 
 <!--    <script type="text/javascript" src="/application/admin/views/js/DatePicker.js"></script>-->
-    <script type="text/javascript" src="/application/admin/views/js/MY97DATEPICKER/WdatePicker.js"></script>
+    <script type="text/javascript" src="/application/admin/views/js/My97DatePicker/WdatePicker.js"></script>
 <!--表单验证-->
     <script type="text/javascript" src="/application/admin/views/js/Validform_v5.3.2_min.js"></script>
 

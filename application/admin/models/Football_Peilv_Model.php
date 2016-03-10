@@ -95,6 +95,16 @@ class Football_peilv_model extends MY_Model
         return $this->db->get($this->table, $limit,$offset)->result_array();
     }
 
+    //根据条件。返回符合条件的赔率的比赛id。传入的参数是数组。.需要符合条件。
+    public function find_fids_by_peilv($options){
+        $temp = $this->find_all($options);
+        $result =array();
+        foreach($temp as $item){
+            $result[] = $item['football_id'];
+        }
+        return array_unique($result);
+    }
+
 
 
 

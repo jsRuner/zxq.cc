@@ -166,7 +166,7 @@ class MY_Model extends CI_Model
     {
         if (!empty($options)) {
             foreach ($options as $key => $val) {
-                    $this->db->$key($val[0],$val[1]);
+                    $this->db->$key($val);
             }
         }
     }

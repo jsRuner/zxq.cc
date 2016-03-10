@@ -179,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">球赛日期</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="2016-3-5 14:34:51" class="input-xlarge" name="football_date"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" datatype="*">
+                                        <input type="text"  class="input-xlarge" name="football_date" value="<?php echo date('Y-m-d H:i:s',time());?>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" datatype="*">
                                         <p class="help-block Validform_label">球赛日期</p>
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">主队排名</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="主队排名" class="input-xlarge" name="team1_rank">
+                                        <input type="text" placeholder="主队排名" class="input-xlarge" name="team1_rank" datatype="n">
                                         <p class="help-block Validform_label">主队排名</p>
                                     </div>
                                 </div>
@@ -212,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">客队</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="比赛球队" class="input-xlarge" name="football_team2">
+                                        <input type="text" placeholder="比赛球队" class="input-xlarge" name="football_team2" datatype="*">
                                         <p class="help-block Validform_label">比赛球队</p>
                                     </div>
                                 </div>
@@ -222,7 +222,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!-- Text input-->
                                     <label class="control-label" for="input01">客队排名</label>
                                     <div class="controls">
-                                        <input type="text" placeholder="客队排名" class="input-xlarge" name="team2_rank">
+                                        <input type="text" placeholder="客队排名" class="input-xlarge" name="team2_rank" datatype="n">
                                         <p class="help-block Validform_label">客队排名</p>
                                     </div>
                                 </div>

@@ -77,8 +77,23 @@
 
 
     </style>
+    <form action="<?php echo site_url('football/index');?>">
 
-    <p style="margin-left: 15px;color: red"><?php echo $rulestr;?></p>
+        <input type="hidden" name="querystr" value="<?php echo $this->input->get('querystr');?>">
+        <input type="hidden" name="rulestr" value="<?php echo $this->input->get('rulestr');?>">
+        
+        <div style="margin-left: 15px;line-height: 30px;">胜:
+            <input type="text" name="football_peilv_win" id="" value="<?php echo $this->input->get('football_peilv_win');?>">平:
+            <input type="text" name="football_peilv_draw" id="" value="<?php echo $this->input->get('football_peilv_draw');?>">负:
+            <input type="text" name="football_peilv_fail" id="" value="<?php echo $this->input->get('football_peilv_fail');?>">
+            <button type="submit">查询</button>
+        </div>
+
+    </form>
+
+
+
+    <p style="margin-left: 15px;color: red"><?php echo $rulestr;?>    </p>
 
 
 
